@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.Command;
+using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using System.IO;
@@ -10,7 +10,7 @@ namespace SamplePlugin
     public sealed class Plugin : IDalamudPlugin
     {
         public string Name => "Sample Plugin";
-        private const string CommandName = "/pmycommand";
+        private const string CommandName = "/bunz";
 
         private DalamudPluginInterface PluginInterface { get; init; }
         private CommandManager CommandManager { get; init; }
@@ -31,7 +31,7 @@ namespace SamplePlugin
             this.Configuration.Initialize(this.PluginInterface);
 
             // you might normally want to embed resources and load them from the manifest stream
-            var imagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "goat.png");
+            var imagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "img.png");
             var goatImage = this.PluginInterface.UiBuilder.LoadImage(imagePath);
 
             ConfigWindow = new ConfigWindow(this);
@@ -42,7 +42,7 @@ namespace SamplePlugin
 
             this.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
             {
-                HelpMessage = "A useful message to display in /xlhelp"
+                HelpMessage = "um things?"
             });
 
             this.PluginInterface.UiBuilder.Draw += DrawUI;
